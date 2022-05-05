@@ -1,9 +1,16 @@
 spring:
+  config:
+    activate:
+      on-profile: dev
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     username: root
     password: root
     url: jdbc:mariadb://localhost:3306/memories
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
 logging:
   level:
     root: "warn"
