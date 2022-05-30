@@ -1,11 +1,11 @@
 package com.memories.api.domain.core;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.HttpStatus;
 
+import javax.validation.constraints.NotNull;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
@@ -15,17 +15,17 @@ public class ApiResult<T> {
 
     private ZonedDateTime time;
 
-    private Code code;
-
-    private T data;
+    private String code;
 
     private T message;
+
+    private T data;
 
     @JsonIgnore
     private HttpStatus httpStatus;
 
     public ApiResult<T> code(@NotNull Code code) {
-        this.code = code;
+        this.code = code.getCode();
         return this;
     }
 
