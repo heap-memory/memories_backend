@@ -1,6 +1,7 @@
 package com.memories.api.domain.memory;
 
 import com.memories.api.domain.common.BaseTime;
+import com.memories.api.domain.user.User;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,14 +11,16 @@ import javax.persistence.*;
 
 @Getter
 @Entity
+@Table(name = "memories")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Memory extends BaseTime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title")
-    private String title;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    private User user;
 
     @Column(name = "author")
     private String author;
@@ -26,8 +29,7 @@ public class Memory extends BaseTime {
     private String content;
 
     @Builder
-    public Memory(String title, String author, String content) {
-        this.title = title;
+    public Memory(String author, String content) {
         this.author = author;
         this.content = content;
     }

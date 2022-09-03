@@ -5,6 +5,7 @@ import lombok.Getter;
 @Getter
 public enum Platform {
     NONE("none"),
+    EMAIL("email"),
     KAKAO("kakao"),
     NAVER("naver"),
     GOOGLE("google"),
